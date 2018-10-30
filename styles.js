@@ -24,6 +24,8 @@ export const styles = StyleSheet.create({
         backgroundColor: '#fdf6d8',
         backfaceVisibility: 'hidden',
         borderRadius: 10,
+        borderWidth: 1,
+        borderColor: 'rgba(0,0,0,0.35)'
     },
     aanbodCard: {
         width: Dimensions.get('window').width -10,

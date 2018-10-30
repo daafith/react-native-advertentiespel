@@ -10,9 +10,9 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showFirst: false,
-            showSecond: false,
-            showThird: false,
+            showKop: false,
+            showAanbod: false,
+            showBeschrijving: false,
             displayOneAtATime: true,
             kop: this.randomElement(kopppen.kop),
             aanbod: this.randomElement(aanbod.aanbod),
@@ -30,17 +30,17 @@ export default class App extends React.Component {
                     <Text style={styles.toggleText}>Eén kaart tegelijk</Text>
                 </View>
                 <Spacer/>
-                <Card showFront={this.state.showFirst} onPress={() => {
+                <Card showFront={this.state.showKop} onPress={() => {
                     this.flip(0);
                     this.setKop();
                 }} frontText={'Kop'} backText={this.state.kop} styling={styles.kopCard}/>
                 <Spacer/>
-                <Card showFront={this.state.showSecond} onPress={() => {
+                <Card showFront={this.state.showAanbod} onPress={() => {
                     this.flip(1);
                     this.setAanbod();
                 }} frontText={'Aanbod'} backText={this.state.aanbod} styling={styles.aanbodCard}/>
                 <Spacer/>
-                <Card showFront={this.state.showThird} onPress={() => {
+                <Card showFront={this.state.showBeschrijving} onPress={() => {
                     this.flip(2);
                     this.setBeschrijving();
                 }} frontText={'Beschrijving'} backText={this.state.beschrijving} styling={styles.beschrijvingCard}/>
@@ -51,9 +51,9 @@ export default class App extends React.Component {
     allowAll = (value) => {
         this.setState({
             displayOneAtATime: value,
-            showFirst: false,
-            showSecond: false,
-            showThird: false,
+            showKop: false,
+            showAanbod: false,
+            showBeschrijving: false,
         })
     };
 
@@ -68,15 +68,15 @@ export default class App extends React.Component {
     displayAny(index) {
         if (index === 0) {
             this.setState({
-                showFirst: !this.state.showFirst
+                showKop: !this.state.showKop
             })
         } else if (index === 1) {
             this.setState({
-                showSecond: !this.state.showSecond
+                showAanbod: !this.state.showAanbod
             })
         } else {
             this.setState({
-                showThird: !this.state.showThird
+                showBeschrijving: !this.state.showBeschrijving
             })
         }
     }
@@ -84,21 +84,21 @@ export default class App extends React.Component {
     displayOne(index) {
         if (index === 0) {
             this.setState({
-                showFirst: !this.state.showFirst,
-                showSecond: false,
-                showThird: false,
+                showKop: !this.state.showKop,
+                showAanbod: false,
+                showBeschrijving: false,
             })
         } else if (index === 1) {
             this.setState({
-                showSecond: !this.state.showSecond,
-                showFirst: false,
-                showThird: false,
+                showAanbod: !this.state.showAanbod,
+                showKop: false,
+                showBeschrijving: false,
             })
         } else {
             this.setState({
-                showThird: !this.state.showThird,
-                showFirst: false,
-                showSecond: false,
+                showBeschrijving: !this.state.showBeschrijving,
+                showKop: false,
+                showAanbod: false,
             })
         }
     }
@@ -132,4 +132,3 @@ class Spacer extends Component {
         return (<View style={styles.spacing}></View>);
     }
 }
-
