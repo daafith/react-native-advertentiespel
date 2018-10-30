@@ -1,4 +1,8 @@
-import {StyleSheet, Dimensions} from "react-native";
+import {StyleSheet, Dimensions, Platform} from "react-native";
+
+function getFont() {
+    return Platform.OS === 'ios' ? 'American Typewriter' : 'Roboto';
+}
 
 export const styles = StyleSheet.create({
     container: {
@@ -7,7 +11,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    kopCard: {
+    kopFront: {
         width: Dimensions.get('window').width -10,
         height: 120,
         alignItems: 'center',
@@ -16,18 +20,18 @@ export const styles = StyleSheet.create({
         backfaceVisibility: 'hidden',
         borderRadius: 10,
     },
-    back: {
+    kopBack: {
         width: Dimensions.get('window').width -10,
         height: 120,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#fdf6d8',
+        backgroundColor: 'rgba(255, 126, 89, 0.3)',
         backfaceVisibility: 'hidden',
         borderRadius: 10,
         borderWidth: 1,
         borderColor: 'rgba(0,0,0,0.35)'
     },
-    aanbodCard: {
+    aanbodFront: {
         width: Dimensions.get('window').width -10,
         height: 120,
         alignItems: 'center',
@@ -36,7 +40,18 @@ export const styles = StyleSheet.create({
         backfaceVisibility: 'hidden',
         borderRadius: 10,
     },
-    beschrijvingCard: {
+    aanbodBack: {
+        width: Dimensions.get('window').width -10,
+        height: 120,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'rgba(255, 229, 119, 0.3)',
+        backfaceVisibility: 'hidden',
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: 'rgba(0,0,0,0.35)'
+    },
+    beschrijvingFront: {
         width: Dimensions.get('window').width -10,
         height: 120,
         alignItems: 'center',
@@ -45,8 +60,20 @@ export const styles = StyleSheet.create({
         backfaceVisibility: 'hidden',
         borderRadius: 10,
     },
+    beschrijvingBack: {
+        width: Dimensions.get('window').width -10,
+        height: 120,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'rgba(78, 184, 11, 0.3)',
+        backfaceVisibility: 'hidden',
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: 'rgba(0,0,0,0.35)'
+    },
     flipText: {
         width:  Dimensions.get('window').width -30,
+        fontFamily: getFont(),
         textAlign: 'center',
         fontSize: 18,
         color: '#000',
@@ -59,6 +86,7 @@ export const styles = StyleSheet.create({
     toggleText: {
         paddingRight: 40,
         textAlign: 'center',
+        fontFamily: getFont(),
     },
     spacing: {
         paddingTop: 5,

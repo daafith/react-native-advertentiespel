@@ -33,17 +33,17 @@ export default class App extends React.Component {
                 <Card showFront={this.state.showKop} onPress={() => {
                     this.flip(0);
                     this.setKop();
-                }} frontText={'Kop'} backText={this.state.kop} styling={styles.kopCard}/>
+                }} frontText={'Kop'} backText={this.state.kop} frontStyling={styles.kopFront} backStyling={styles.kopBack}/>
                 <Spacer/>
                 <Card showFront={this.state.showAanbod} onPress={() => {
                     this.flip(1);
                     this.setAanbod();
-                }} frontText={'Aanbod'} backText={this.state.aanbod} styling={styles.aanbodCard}/>
+                }} frontText={'Aanbod'} backText={this.state.aanbod} frontStyling={styles.aanbodFront} backStyling={styles.aanbodBack}/>
                 <Spacer/>
                 <Card showFront={this.state.showBeschrijving} onPress={() => {
                     this.flip(2);
                     this.setBeschrijving();
-                }} frontText={'Beschrijving'} backText={this.state.beschrijving} styling={styles.beschrijvingCard}/>
+                }} frontText={'Beschrijving'} backText={this.state.beschrijving} frontStyling={styles.beschrijvingFront} backStyling={styles.beschrijvingBack}/>
             </View>
         );
     }
@@ -58,14 +58,10 @@ export default class App extends React.Component {
     };
 
     flip(index) {
-        if (this.state.displayOneAtATime) {
-            this.displayOne(index);
-        } else {
-            this.displayAny(index);
-        }
+        this.state.displayOneAtATime ? this.flipOne(index) : this.flipAny(index);
     };
 
-    displayAny(index) {
+    flipAny(index) {
         if (index === 0) {
             this.setState({
                 showKop: !this.state.showKop
@@ -81,7 +77,7 @@ export default class App extends React.Component {
         }
     }
 
-    displayOne(index) {
+    flipOne(index) {
         if (index === 0) {
             this.setState({
                 showKop: !this.state.showKop,

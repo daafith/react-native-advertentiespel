@@ -8,12 +8,12 @@ export class Card extends Component {
         return <View>
             <FadeIntoView>
                 {!this.props.showFront &&
-                <TouchableOpacity underlayColor={"transparent"} style={this.props.styling}
+                <TouchableOpacity underlayColor={"transparent"} style={this.props.frontStyling}
                                   onPress={this.props.onPress}>
                     <Text style={styles.flipText}>{this.props.frontText}</Text>
                 </TouchableOpacity>}
                 {this.props.showFront &&
-                <TouchableOpacity underlayColor={"transparent"} style={styles.back}
+                <TouchableOpacity underlayColor={"transparent"} style={this.props.backStyling}
                                   onPress={this.props.onPress}>
                     <Text style={styles.flipText}>{this.props.backText}</Text>
                 </TouchableOpacity>}
@@ -27,7 +27,8 @@ Card.propTypes = {
     onPress: PropTypes.func,
     frontText: PropTypes.string,
     backText: PropTypes.any,
-    styling: PropTypes.any
+    frontStyling: PropTypes.any,
+    backStyling: PropTypes.any
 };
 
 class FadeIntoView extends React.Component {
