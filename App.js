@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import {Text, View, TouchableOpacity, Animated, Switch} from 'react-native';
 import {styles} from "./styles";
+import kopppen from './assets/kop';
+import aanbod from './assets/aanbod';
+import beschrijvingen from './assets/beschrijvingen';
 
 export default class App extends React.Component {
     constructor(props) {
@@ -9,7 +12,10 @@ export default class App extends React.Component {
             showFirst: false,
             showSecond: false,
             showThird: false,
-            displayOneAtATime: true
+            displayOneAtATime: true,
+            kop: this.randomElement(kopppen.kop),
+            aanbod: this.randomElement(aanbod.aanbod),
+            beschrijving: this.randomElement(beschrijvingen.beschrijving),
         };
     }
 
@@ -20,7 +26,7 @@ export default class App extends React.Component {
             showSecond: false,
             showThird: false,
         })
-    }
+    };
 
     flip(index) {
         if (this.state.displayOneAtATime) {
@@ -39,7 +45,7 @@ export default class App extends React.Component {
             this.setState({
                 showSecond: !this.state.showSecond
             })
-        } else if (index === 2) {
+        } else {
             this.setState({
                 showThird: !this.state.showThird
             })
@@ -59,7 +65,7 @@ export default class App extends React.Component {
                 showFirst: false,
                 showThird: false,
             })
-        } else if (index === 2) {
+        } else {
             this.setState({
                 showThird: !this.state.showThird,
                 showFirst: false,
@@ -68,28 +74,53 @@ export default class App extends React.Component {
         }
     }
 
+    setKop = () => {
+        this.setState({
+            kop: this.randomElement(kopppen.kop),
+        })
+    };
+
+    setAanbod = () => {
+        this.setState({
+            aanbod: this.randomElement(aanbod.aanbod),
+        })
+    };
+
+    setBeschrijving = () => {
+        this.setState({
+            beschrijving: this.randomElement(beschrijvingen.beschrijving),
+        })
+    };
+
+    randomElement(arr) {
+        const x = Math.floor((Math.random() * arr.length));
+        return arr[x];
+    }
+
     render() {
+        let kop = 'Kop';
+        let aanbod = 'Aanbod';
+        let beschrijving = 'Beschrijving';
         return (
             <View style={styles.container}>
-                <View style={styles.nestedButtonView}>
+                <View style={styles.toggleView}>
                     <Switch
                         onValueChange={this.allowAll}
                         value={this.state.displayOneAtATime}/>
-                    <Text style={styles.buttonText}>Eén kaart tegelijk</Text>
+                    <Text style={styles.toggleText}>Eén kaart tegelijk</Text>
                 </View>
                 <Spacer/>
                 <View>
-
                     <FadeIntoView>
                         {!this.state.showFirst &&
                         <TouchableOpacity underlayColor={"transparent"} style={styles.kopCard}
-                                          onPress={() => this.flip(0)}>
-                            <Text style={styles.flipText}>Kop</Text>
+                                          onPress={() => { this.flip(0); this.setKop(); }}>
+                            <Text style={styles.flipText}>{kop}</Text>
                         </TouchableOpacity>}
                         {this.state.showFirst &&
-                        <TouchableOpacity underlayColor={"transparent"} style={styles.kopBack}
-                                          onPress={() => this.flip(0)}>
-                            <Text style={styles.flipText}>Weggelopen:</Text>
+                        <TouchableOpacity underlayColor={"transparent"} style={styles.back}
+                                          onPress={() => { this.flip(0); this.setKop(); }}>
+                            <Text style={styles.flipText}>{this.state.kop}</Text>
                         </TouchableOpacity>}
                     </FadeIntoView>
                 </View>
@@ -98,13 +129,13 @@ export default class App extends React.Component {
                     <FadeIntoView>
                         {!this.state.showSecond &&
                         <TouchableOpacity underlayColor={"transparent"} style={styles.aanbodCard}
-                                          onPress={() => this.flip(1)}>
-                            <Text style={styles.flipText}>Aanbod</Text>
+                                          onPress={() => { this.flip(1); this.setAanbod(); }}>
+                            <Text style={styles.flipText}>{aanbod}</Text>
                         </TouchableOpacity>}
                         {this.state.showSecond &&
-                        <TouchableOpacity underlayColor={"transparent"} style={styles.kopBack}
-                                          onPress={() => this.flip(1)}>
-                            <Text style={styles.flipText}>een gemeubileerde zitkamer</Text>
+                        <TouchableOpacity underlayColor={"transparent"} style={styles.back}
+                                          onPress={() => { this.flip(1); this.setAanbod(); }}>
+                            <Text style={styles.flipText}>{this.state.aanbod}</Text>
                         </TouchableOpacity>}
                     </FadeIntoView>
                 </View>
@@ -113,13 +144,13 @@ export default class App extends React.Component {
                     <FadeIntoView>
                         {!this.state.showThird &&
                         <TouchableOpacity underlayColor={"transparent"} style={styles.beschrijvingCard}
-                                          onPress={() => this.flip(2)}>
-                            <Text style={styles.flipText}>Beschrijving</Text>
+                                          onPress={() => { this.flip(2); this.setBeschrijving(); }}>
+                            <Text style={styles.flipText}>{beschrijving}</Text>
                         </TouchableOpacity>}
                         {this.state.showThird &&
-                        <TouchableOpacity underlayColor={"transparent"} style={styles.kopBack}
-                                          onPress={() => this.flip(2)}>
-                            <Text style={styles.flipText}>in rolletjes van 20 stuks</Text>
+                        <TouchableOpacity underlayColor={"transparent"} style={styles.back}
+                                          onPress={() => { this.flip(2); this.setBeschrijving(); }}>
+                            <Text style={styles.flipText}>{this.state.beschrijving}</Text>
                         </TouchableOpacity>}
                     </FadeIntoView>
                 </View>

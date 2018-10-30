@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
         backfaceVisibility: 'hidden',
         borderRadius: 10,
     },
-    kopBack: {
+    back: {
         width: Dimensions.get('window').width -10,
         height: 120,
         alignItems: 'center',
@@ -50,11 +50,11 @@ export const styles = StyleSheet.create({
         color: '#000',
         fontWeight: '300',
     },
-    nestedButtonView: {
+    toggleView: {
         flexDirection: 'row',
         alignItems: 'center',
     },
-    buttonText: {
+    toggleText: {
         paddingRight: 40,
         textAlign: 'center',
     },
