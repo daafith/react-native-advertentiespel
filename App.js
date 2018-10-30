@@ -29,25 +29,24 @@ export default class App extends React.Component {
                         value={this.state.displayOneAtATime}/>
                     <Text style={styles.toggleText}>Eén kaart tegelijk</Text>
                 </View>
-                <Spacer/>
-                <Spacer/>
-                <Spacer/>
-                <Spacer/>
-                <Spacer/>
+                <Divider/>
                 <Card showFront={this.state.showKop} onPress={() => {
                     this.flip(0);
                     this.setKop();
-                }} frontText={'Kop'} backText={this.state.kop} frontStyling={styles.kopFront} backStyling={styles.kopBack}/>
+                }} frontText={'Kop'} backText={this.state.kop} frontStyling={styles.kopFront}
+                      backStyling={styles.kopBack}/>
                 <Spacer/>
                 <Card showFront={this.state.showAanbod} onPress={() => {
                     this.flip(1);
                     this.setAanbod();
-                }} frontText={'Aanbod'} backText={this.state.aanbod} frontStyling={styles.aanbodFront} backStyling={styles.aanbodBack}/>
+                }} frontText={'Aanbod'} backText={this.state.aanbod} frontStyling={styles.aanbodFront}
+                      backStyling={styles.aanbodBack}/>
                 <Spacer/>
                 <Card showFront={this.state.showBeschrijving} onPress={() => {
                     this.flip(2);
                     this.setBeschrijving();
-                }} frontText={'Beschrijving'} backText={this.state.beschrijving} frontStyling={styles.beschrijvingFront} backStyling={styles.beschrijvingBack}/>
+                }} frontText={'Beschrijving'} backText={this.state.beschrijving} frontStyling={styles.beschrijvingFront}
+                      backStyling={styles.beschrijvingBack}/>
             </View>
         );
     }
@@ -124,6 +123,16 @@ export default class App extends React.Component {
     randomElement(arr) {
         const x = Math.floor((Math.random() * arr.length));
         return arr[x];
+    }
+}
+
+class Divider extends Component {
+    render() {
+        return <><Spacer/>
+            <Spacer/>
+            <Spacer/>
+            <Spacer/>
+            <Spacer/></>;
     }
 }
 
