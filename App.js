@@ -29,7 +29,11 @@ export default class App extends React.Component {
                         value={this.state.displayOneAtATime}/>
                     <Text style={styles.toggleText}>Eén kaart tegelijk</Text>
                 </View>
-                <Divider/>
+                <Spacer/>
+                <Spacer/>
+                <Spacer/>
+                <Spacer/>
+                <Spacer/>
                 <Card showFront={this.state.showKop} onPress={() => {
                     this.flip(0);
                     this.setKop();
@@ -123,16 +127,6 @@ export default class App extends React.Component {
     randomElement(arr) {
         const x = Math.floor((Math.random() * arr.length));
         return arr[x];
-    }
-}
-
-class Divider extends Component {
-    render() {
-        return <><Spacer/>
-            <Spacer/>
-            <Spacer/>
-            <Spacer/>
-            <Spacer/></>;
     }
 }
 
