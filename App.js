@@ -30,6 +30,10 @@ export default class App extends React.Component {
                     <Text style={styles.toggleText}>Eén kaart tegelijk</Text>
                 </View>
                 <Spacer/>
+                <Spacer/>
+                <Spacer/>
+                <Spacer/>
+                <Spacer/>
                 <Card showFront={this.state.showKop} onPress={() => {
                     this.flip(0);
                     this.setKop();
