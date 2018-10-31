@@ -91,5 +91,19 @@ export const styles = StyleSheet.create({
     spacing: {
         paddingTop: 5,
         paddingBottom: 5,
+    },
+    header: {
+        paddingBottom: 30,
+        fontFamily: getFont(),
+        textAlign: 'center',
+        fontSize: 24,
+        color: '#713030',
+        fontWeight: '300',
+        opacity: 0.25,
+        transform: [
+            { perspective: 300 },
+            { rotateY: '30deg'},
+            { skewY: '-10deg'},
+        ]
     }
 });

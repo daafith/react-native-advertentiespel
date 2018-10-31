@@ -37,18 +37,12 @@ class FadeIntoView extends React.Component {
     }
 
     componentDidMount() {
-        Animated.sequence([Animated.timing(
+        Animated.timing(
             this.state.fadeAnim,
             {
                 toValue: 1,
                 duration: 800,
-            },
-            this.state.fadeAnim,
-            {
-                toValue: 0.3,
-                duration: 800,
-            },
-        )]).start();
+            }).start();
     }
 
     render() {

@@ -23,6 +23,7 @@ export default class App extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                <Text style={styles.header}>Advertentiespel</Text>
                 <View style={styles.toggleView}>
                     <Switch
                         onValueChange={this.allowAll}
@@ -69,28 +70,22 @@ export default class App extends React.Component {
     };
 
     flipAny(index) {
-        let showKop = index === 0 ? !this.state.showKop : this.state.showKop;
-        let showAanbod = index === 1 ? !this.state.showAanbod : this.state.showAanbod;
-        let showBeschrijving = index === 2 ? !this.state.showBeschrijving : this.state.showBeschrijving;
-
-        this.setState({
-            showKop,
-            showAanbod,
-            showBeschrijving,
-        });
+        if (index === 0) {
+            this.setState({
+                showKop: true
+            })
+        } else if (index === 1) {
+            this.setState({
+                showAanbod: true
+            })
+        } else {
+            this.setState({
+                showBeschrijving: true
+            })
+        }
     }
 
     flipOne(index) {
-        // let showKop = index === 0;
-        // let showAanbod = index === 1;
-        // let showBeschrijving = index === 2;
-        //
-        // this.setState({
-        //     showKop,
-        //     showAanbod,
-        //     showBeschrijving,
-        // });
-
         if (index === 0) {
             this.setState({
                 showKop: !this.state.showKop,
