@@ -7,12 +7,12 @@ export class Card extends Component {
     render() {
         return <View>
             <FadeIntoView>
-                {!this.props.showFront &&
+                {!this.props.showBack &&
                 <TouchableOpacity underlayColor={"transparent"} style={this.props.frontStyling}
                                   onPress={this.props.onPress}>
                     <Text style={styles.flipText}>{this.props.frontText}</Text>
                 </TouchableOpacity>}
-                {this.props.showFront &&
+                {this.props.showBack &&
                 <TouchableOpacity underlayColor={"transparent"} style={this.props.backStyling}
                                   onPress={this.props.onPress}>
                     <Text style={styles.flipText}>{this.props.backText}</Text>
@@ -23,7 +23,7 @@ export class Card extends Component {
 }
 
 Card.propTypes = {
-    showFront: PropTypes.bool,
+    showBack: PropTypes.bool,
     onPress: PropTypes.func,
     frontText: PropTypes.string,
     backText: PropTypes.any,
@@ -37,13 +37,18 @@ class FadeIntoView extends React.Component {
     }
 
     componentDidMount() {
-        Animated.timing(
+        Animated.sequence([Animated.timing(
             this.state.fadeAnim,
             {
                 toValue: 1,
-                duration: 700,
-            }
-        ).start();
+                duration: 800,
+            },
+            this.state.fadeAnim,
+            {
+                toValue: 0.3,
+                duration: 800,
+            },
+        )]).start();
     }
 
     render() {

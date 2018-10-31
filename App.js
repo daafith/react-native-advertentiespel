@@ -34,19 +34,19 @@ export default class App extends React.Component {
                 <Spacer/>
                 <Spacer/>
                 <Spacer/>
-                <Card showFront={this.state.showKop} onPress={() => {
+                <Card showBack={this.state.showKop} onPress={() => {
                     this.flip(0);
                     this.setKop();
                 }} frontText={'Kop'} backText={this.state.kop} frontStyling={styles.kopFront}
                       backStyling={styles.kopBack}/>
                 <Spacer/>
-                <Card showFront={this.state.showAanbod} onPress={() => {
+                <Card showBack={this.state.showAanbod} onPress={() => {
                     this.flip(1);
                     this.setAanbod();
                 }} frontText={'Aanbod'} backText={this.state.aanbod} frontStyling={styles.aanbodFront}
                       backStyling={styles.aanbodBack}/>
                 <Spacer/>
-                <Card showFront={this.state.showBeschrijving} onPress={() => {
+                <Card showBack={this.state.showBeschrijving} onPress={() => {
                     this.flip(2);
                     this.setBeschrijving();
                 }} frontText={'Beschrijving'} backText={this.state.beschrijving} frontStyling={styles.beschrijvingFront}
@@ -69,22 +69,28 @@ export default class App extends React.Component {
     };
 
     flipAny(index) {
-        if (index === 0) {
-            this.setState({
-                showKop: !this.state.showKop
-            })
-        } else if (index === 1) {
-            this.setState({
-                showAanbod: !this.state.showAanbod
-            })
-        } else {
-            this.setState({
-                showBeschrijving: !this.state.showBeschrijving
-            })
-        }
+        let showKop = index === 0 ? !this.state.showKop : this.state.showKop;
+        let showAanbod = index === 1 ? !this.state.showAanbod : this.state.showAanbod;
+        let showBeschrijving = index === 2 ? !this.state.showBeschrijving : this.state.showBeschrijving;
+
+        this.setState({
+            showKop,
+            showAanbod,
+            showBeschrijving,
+        });
     }
 
     flipOne(index) {
+        // let showKop = index === 0;
+        // let showAanbod = index === 1;
+        // let showBeschrijving = index === 2;
+        //
+        // this.setState({
+        //     showKop,
+        //     showAanbod,
+        //     showBeschrijving,
+        // });
+
         if (index === 0) {
             this.setState({
                 showKop: !this.state.showKop,
