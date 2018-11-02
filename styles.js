@@ -97,7 +97,7 @@ export const styles = StyleSheet.create({
         fontFamily: getFont(),
         textAlign: 'center',
         fontSize: 24,
-        color: '#713030',
+        color: '#441d1d',
         fontWeight: '300',
         opacity: 0.25,
         transform: [
