@@ -30,11 +30,7 @@ export default class App extends React.Component {
                         value={this.state.displayOneAtATime}/>
                     <Text style={styles.toggleText}>Eén kaart tegelijk</Text>
                 </View>
-                <Spacer/>
-                <Spacer/>
-                <Spacer/>
-                <Spacer/>
-                <Spacer/>
+                <Divider/>
                 <Card showBack={this.state.showKop} onPress={() => {
                     this.flip(0);
                     this.setKop();
@@ -65,11 +61,11 @@ export default class App extends React.Component {
         })
     };
 
-    flip(index) {
+    flip = (index) => {
         this.state.displayOneAtATime ? this.flipOne(index) : this.flipAny(index);
     };
 
-    flipAny(index) {
+    flipAny = (index) => {
         if (index === 0) {
             this.setState({
                 showKop: true
@@ -85,22 +81,22 @@ export default class App extends React.Component {
         }
     }
 
-    flipOne(index) {
+    flipOne = (index) => {
         if (index === 0) {
             this.setState({
-                showKop: !this.state.showKop,
+                showKop: true,
                 showAanbod: false,
                 showBeschrijving: false,
             })
         } else if (index === 1) {
             this.setState({
-                showAanbod: !this.state.showAanbod,
+                showAanbod: true,
                 showKop: false,
                 showBeschrijving: false,
             })
         } else {
             this.setState({
-                showBeschrijving: !this.state.showBeschrijving,
+                showBeschrijving: true,
                 showKop: false,
                 showAanbod: false,
             })
@@ -109,7 +105,7 @@ export default class App extends React.Component {
 
     setKop = () => {
         this.setState({
-            kop: this.randomElement(kopppen.kop),
+            kop: this.randomElement(kopppen.kop)
         })
     };
 
@@ -128,6 +124,12 @@ export default class App extends React.Component {
     randomElement(arr) {
         const x = Math.floor((Math.random() * arr.length));
         return arr[x];
+    }
+}
+
+class Divider extends Component {
+    render() {
+        return (<View style={styles.divider}></View>);
     }
 }
 

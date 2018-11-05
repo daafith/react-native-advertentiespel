@@ -88,6 +88,10 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
         fontFamily: getFont(),
     },
+    divider: {
+        paddingTop: 25,
+        paddingBottom: 25,
+    },
     spacing: {
         paddingTop: 5,
         paddingBottom: 5,
