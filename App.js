@@ -1,10 +1,87 @@
 import React, {Component} from 'react';
-import {Switch, Text, View} from 'react-native';
+import {Switch, Text, TouchableOpacity, View} from 'react-native';
 import {styles} from "./styles";
 import kopppen from './assets/kop';
 import aanbod from './assets/aanbod';
 import beschrijvingen from './assets/beschrijvingen';
 import {Card} from "./components/Card";
+import * as PropTypes from "prop-types";
+
+class Explanation extends Component {
+    render() {
+        return (
+            <View style={styles.overlay}>
+            <TouchableOpacity underlayColor={"transparent"} onPress={this.props.onPress}>
+                <Text style={styles.overlayText}>
+                    <Text style={{fontWeight: "bold"}}>Uitleg</Text>{"\n"}
+                    Het advertentiespek bevat drie soorten kaarten: de kop, het aanbod en de beschrijving.{"\n"}{"\n"}
+                    Om beurt draaien de spelers een kaart om en lezen hardop wat er op staat.
+                    Eerst een kopkaart, dan een aanbieding en tenslotte een beschrijving.
+                    Het doel van het spel is gezelligheid en plezier.{"\n"}{"\n"}
+                    <Text style={{fontWeight: "bold"}}>Opties</Text>{"\n"}
+                    Deze app geeft (per speler) de mogelijkheid één of meerdere kaarten tegelijk te trekken.
+                    Wil je een andere tekst? Druk dan opnieuw op de betreffende kaart.
+                </Text>
+            </TouchableOpacity>
+        </View>
+        );
+    }
+}
+
+Explanation.propTypes = {onPress: PropTypes.func};
+
+class QuestionMark extends Component {
+    render() {
+        return <View style={styles.questionView}>
+            <TouchableOpacity underlayColor={"transparent"} onPress={this.props.onPress}>
+                <Text style={styles.questionText}>?</Text>
+            </TouchableOpacity>
+        </View>;
+    }
+}
+
+QuestionMark.propTypes = {onPress: PropTypes.func};
+
+class GameBoard extends Component {
+    render() {
+        return <View style={styles.container}>
+            <Text style={styles.header}>Advertentiespel</Text>
+            <View style={styles.toggleView}>
+                <Switch
+                    onValueChange={this.props.onValueChange}
+                    value={this.props.value}/>
+                <Text style={styles.toggleText}>Eén kaart tegelijk</Text>
+            </View>
+            <Divider/>
+            <Card showBack={this.props.showBackKop} onPress={this.props.onPressKop} frontText={"Kop"}
+                  backText={this.props.backTextKop} frontStyling={styles.kopFront}
+                  backStyling={styles.kopBack}/>
+            <Spacer/>
+            <Card showBack={this.props.showBackAanbod} onPress={this.props.onPressAanbod} frontText={"Aanbod"}
+                  backText={this.props.backTextAanbod} frontStyling={styles.aanbodFront}
+                  backStyling={styles.aanbodBack}/>
+            <Spacer/>
+            <Card showBack={this.props.showBackBeschrijving} onPress={this.props.onPressBeschrijving} frontText={"Beschrijving"}
+                  backText={this.props.backTextBeschrijving}
+                  frontStyling={styles.beschrijvingFront}
+                  backStyling={styles.beschrijvingBack}/>
+        </View>;
+    }
+}
+
+GameBoard.propTypes = {
+    onValueChange: PropTypes.func,
+    value: PropTypes.bool,
+    showBackKop: PropTypes.bool,
+    onPressKop: PropTypes.func,
+    backTextKop: PropTypes.any,
+    showBackAanbod: PropTypes.bool,
+    onPressAanbod: PropTypes.func,
+    backTextAanbod: PropTypes.any,
+    showBackBeschrijving: PropTypes.bool,
+    onPressBeschrijving: PropTypes.func,
+    backTextBeschrijving: PropTypes.any
+};
 
 export default class App extends React.Component {
     constructor(props) {
@@ -18,6 +95,7 @@ export default class App extends React.Component {
             kop: this.randomElement(kopppen.kop),
             aanbod: this.randomElement(aanbod.aanbod),
             beschrijving: this.randomElement(beschrijvingen.beschrijving),
+            showExplanation: false,
         };
     }
 
@@ -33,34 +111,32 @@ export default class App extends React.Component {
 
     render() {
         return (
-            <View style={styles.container}>
-                <Text style={styles.header}>Advertentiespel</Text>
-                <View style={styles.toggleView}>
-                    <Switch
-                        onValueChange={this.allowAll}
-                        value={this.state.displayOneAtATime}/>
-                    <Text style={styles.toggleText}>Eén kaart tegelijk</Text>
+            <View>
+                {!this.state.showExplanation && <QuestionMark onPress={() => this.showExplanation()}/>}
+                <View>
+                    {this.state.showExplanation && <Explanation onPress={() => this.showExplanation()}/>
+                    }
+                    {!this.state.showExplanation && <GameBoard onValueChange={this.allowAll}
+                                                               value={this.state.displayOneAtATime}
+                                                               showBackKop={this.state.showKop} onPressKop={() => {
+                        this.flip(0);
+                        this.setKop();
+                    }} backTextKop={this.state.kop} showBackAanbod={this.state.showAanbod} onPressAanbod={() => {
+                        this.flip(1);
+                        this.setAanbod();
+                    }} backTextAanbod={this.state.aanbod} showBackBeschrijving={this.state.showBeschrijving} onPressBeschrijving={() => {
+                        this.flip(2);
+                        this.setBeschrijving();
+                    }} backTextBeschrijving={this.state.beschrijving}/>}
                 </View>
-                <Divider/>
-                <Card showBack={this.state.showKop} onPress={() => {
-                    this.flip(0);
-                    this.setKop();
-                }} frontText={'Kop'} backText={this.state.kop} frontStyling={styles.kopFront}
-                      backStyling={styles.kopBack}/>
-                <Spacer/>
-                <Card showBack={this.state.showAanbod} onPress={() => {
-                    this.flip(1);
-                    this.setAanbod();
-                }} frontText={'Aanbod'} backText={this.state.aanbod} frontStyling={styles.aanbodFront}
-                      backStyling={styles.aanbodBack}/>
-                <Spacer/>
-                <Card showBack={this.state.showBeschrijving} onPress={() => {
-                    this.flip(2);
-                    this.setBeschrijving();
-                }} frontText={'Beschrijving'} backText={this.state.beschrijving} frontStyling={styles.beschrijvingFront}
-                      backStyling={styles.beschrijvingBack}/>
             </View>
         );
+    }
+
+    showExplanation = () => {
+        this.setState({
+            showExplanation: !this.state.showExplanation
+        })
     }
 
     allowAll = (value) => {

@@ -1,18 +1,59 @@
-import {StyleSheet, Dimensions, Platform} from "react-native";
+import {StyleSheet, Dimensions, Platform, StatusBar} from "react-native";
 
 function getFont() {
     return Platform.OS === 'ios' ? 'American Typewriter' : 'Roboto';
 }
 
+function getWidth() {
+    return Dimensions.get('window').width - 10;
+}
+
 export const styles = StyleSheet.create({
+    questionView: {
+        paddingTop: StatusBar.currentHeight + 5,
+        paddingRight: 10,
+        alignItems: 'flex-end',
+    },
+    questionText: {
+        fontFamily: getFont(),
+        textAlign: 'center',
+        color: '#000',
+        fontWeight: '300',
+        fontSize: 18,
+        width: 24,
+        height: 24,
+        borderRadius: 24/2,
+        backgroundColor: 'rgba(68, 29, 29, 0.25)',
+    },
+    overlay: {
+        // position: 'absolute',
+        // flex: 1,
+        // top: 0,
+        // bottom: 0,
+        // opacity: 0.8,
+        backgroundColor: '#f5f5f5',
+        // height: 700,
+        paddingTop: StatusBar.currentHeight + 5,
+        width: getWidth(),
+        // right: 5,
+        // left: 5,
+        // alignItems: 'center',
+        // justifyContent: 'center',
+    },
+    overlayText: {
+        fontFamily: getFont(),
+        color: '#000',
+        fontWeight: '300',
+        fontSize: 18,
+        padding: 5,
+    },
     container: {
-        flex: 2,
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
     },
     kopFront: {
-        width: Dimensions.get('window').width -10,
+        width: getWidth(),
         height: 120,
         alignItems: 'center',
         justifyContent: 'center',
@@ -21,7 +62,7 @@ export const styles = StyleSheet.create({
         borderRadius: 10,
     },
     kopBack: {
-        width: Dimensions.get('window').width -10,
+        width: getWidth(),
         height: 120,
         alignItems: 'center',
         justifyContent: 'center',
@@ -32,7 +73,7 @@ export const styles = StyleSheet.create({
         borderColor: 'rgba(255, 126, 89, 0.45)'
     },
     aanbodFront: {
-        width: Dimensions.get('window').width -10,
+        width: getWidth(),
         height: 120,
         alignItems: 'center',
         justifyContent: 'center',
@@ -41,7 +82,7 @@ export const styles = StyleSheet.create({
         borderRadius: 10,
     },
     aanbodBack: {
-        width: Dimensions.get('window').width -10,
+        width: getWidth(),
         height: 120,
         alignItems: 'center',
         justifyContent: 'center',
@@ -52,7 +93,7 @@ export const styles = StyleSheet.create({
         borderColor: 'rgba(255, 229, 119, 0.45)'
     },
     beschrijvingFront: {
-        width: Dimensions.get('window').width -10,
+        width: getWidth(),
         height: 120,
         alignItems: 'center',
         justifyContent: 'center',
@@ -61,7 +102,7 @@ export const styles = StyleSheet.create({
         borderRadius: 10,
     },
     beschrijvingBack: {
-        width: Dimensions.get('window').width -10,
+        width: getWidth(),
         height: 120,
         alignItems: 'center',
         justifyContent: 'center',
