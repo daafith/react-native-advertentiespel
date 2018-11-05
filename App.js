@@ -13,11 +13,22 @@ export default class App extends React.Component {
             showKop: false,
             showAanbod: false,
             showBeschrijving: false,
+            lastFlipped: -1,
             displayOneAtATime: true,
             kop: this.randomElement(kopppen.kop),
             aanbod: this.randomElement(aanbod.aanbod),
             beschrijving: this.randomElement(beschrijvingen.beschrijving),
         };
+    }
+
+    componentDidUpdate(oldProps, oldState) {
+        if (this.isKop(this.state.lastFlipped) && oldState.kop === this.state.kop) {
+            this.setKop();
+        } else if (this.isAanbod(this.state.lastFlipped) && oldState.aanbod === this.state.aanbod) {
+            this.setAanbod();
+        } else if (this.isBeschrijving(this.state.lastFlipped) && oldState.beschrijving === this.state.beschrijving) {
+            this.setBeschrijving();
+        }
     }
 
     render() {
@@ -63,14 +74,17 @@ export default class App extends React.Component {
 
     flip = (index) => {
         this.state.displayOneAtATime ? this.flipOne(index) : this.flipAny(index);
+        this.setState({
+            lastFlipped: index
+        })
     };
 
     flipAny = (index) => {
-        if (index === 0) {
+        if (this.isKop(index)) {
             this.setState({
                 showKop: true
             })
-        } else if (index === 1) {
+        } else if (this.isAanbod(index)) {
             this.setState({
                 showAanbod: true
             })
@@ -81,14 +95,26 @@ export default class App extends React.Component {
         }
     }
 
+    isKop(index) {
+        return index === 0;
+    }
+
+    isAanbod(index) {
+        return index === 1;
+    }
+
+    isBeschrijving(index) {
+        return index === 2;
+    }
+
     flipOne = (index) => {
-        if (index === 0) {
+        if (this.isKop(index)) {
             this.setState({
                 showKop: true,
                 showAanbod: false,
                 showBeschrijving: false,
             })
-        } else if (index === 1) {
+        } else if (this.isAanbod(index)) {
             this.setState({
                 showAanbod: true,
                 showKop: false,
