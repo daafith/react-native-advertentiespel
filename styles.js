@@ -1,21 +1,25 @@
 import {StyleSheet, Dimensions, Platform, StatusBar} from "react-native";
 
-function getFont() {
+function font() {
     return Platform.OS === 'ios' ? 'American Typewriter' : 'Roboto';
 }
 
-function getWidth() {
+function boardWidth() {
     return Dimensions.get('window').width - 10;
+}
+
+function screentTop() {
+    return StatusBar.currentHeight + 5;
 }
 
 export const styles = StyleSheet.create({
     questionView: {
-        paddingTop: StatusBar.currentHeight + 5,
+        paddingTop: screentTop(),
         paddingRight: 10,
         alignItems: 'flex-end',
     },
     questionText: {
-        fontFamily: getFont(),
+        fontFamily: font(),
         textAlign: 'center',
         color: '#000',
         fontWeight: '300',
@@ -26,26 +30,40 @@ export const styles = StyleSheet.create({
         backgroundColor: 'rgba(68, 29, 29, 0.25)',
     },
     overlay: {
-        // position: 'absolute',
-        // flex: 1,
-        // top: 0,
-        // bottom: 0,
-        // opacity: 0.8,
         backgroundColor: '#f5f5f5',
-        // height: 700,
-        paddingTop: StatusBar.currentHeight + 5,
-        width: getWidth(),
-        // right: 5,
-        // left: 5,
-        // alignItems: 'center',
-        // justifyContent: 'center',
+        paddingTop: screentTop(),
+        width: Dimensions.get('window').width,
     },
     overlayText: {
-        fontFamily: getFont(),
+        fontFamily: font(),
         color: '#000',
         fontWeight: '300',
         fontSize: 18,
         padding: 5,
+    },
+    backToGame: {
+        height: 48,
+        width: 88,
+        lineHeight: 44,
+        margin: 5,
+        paddingLeft: 5,
+        paddingRight: 5,
+        textAlign: 'center',
+        fontFamily: font(),
+        borderColor: 'rgba(78, 184, 11, 0.75)',
+        fontSize: 18,
+        fontWeight: '400',
+        color:'#000',
+        backgroundColor: 'rgba(78, 184, 11, 0.75)',
+        ...Platform.select({
+            android: {
+                borderRadius: 50,
+            },
+            ios: {
+                borderRadius: 25,
+                overflow: 'hidden',
+            },
+        }),
     },
     container: {
         backgroundColor: '#fff',
@@ -53,7 +71,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     kopFront: {
-        width: getWidth(),
+        width: boardWidth(),
         height: 120,
         alignItems: 'center',
         justifyContent: 'center',
@@ -62,7 +80,7 @@ export const styles = StyleSheet.create({
         borderRadius: 10,
     },
     kopBack: {
-        width: getWidth(),
+        width: boardWidth(),
         height: 120,
         alignItems: 'center',
         justifyContent: 'center',
@@ -73,7 +91,7 @@ export const styles = StyleSheet.create({
         borderColor: 'rgba(255, 126, 89, 0.45)'
     },
     aanbodFront: {
-        width: getWidth(),
+        width: boardWidth(),
         height: 120,
         alignItems: 'center',
         justifyContent: 'center',
@@ -82,7 +100,7 @@ export const styles = StyleSheet.create({
         borderRadius: 10,
     },
     aanbodBack: {
-        width: getWidth(),
+        width: boardWidth(),
         height: 120,
         alignItems: 'center',
         justifyContent: 'center',
@@ -93,7 +111,7 @@ export const styles = StyleSheet.create({
         borderColor: 'rgba(255, 229, 119, 0.45)'
     },
     beschrijvingFront: {
-        width: getWidth(),
+        width: boardWidth(),
         height: 120,
         alignItems: 'center',
         justifyContent: 'center',
@@ -102,7 +120,7 @@ export const styles = StyleSheet.create({
         borderRadius: 10,
     },
     beschrijvingBack: {
-        width: getWidth(),
+        width: boardWidth(),
         height: 120,
         alignItems: 'center',
         justifyContent: 'center',
@@ -114,7 +132,7 @@ export const styles = StyleSheet.create({
     },
     flipText: {
         width:  Dimensions.get('window').width -30,
-        fontFamily: getFont(),
+        fontFamily: font(),
         textAlign: 'center',
         fontSize: 18,
         color: '#000',
@@ -127,7 +145,7 @@ export const styles = StyleSheet.create({
     toggleText: {
         paddingRight: 40,
         textAlign: 'center',
-        fontFamily: getFont(),
+        fontFamily: font(),
     },
     divider: {
         paddingTop: 25,
@@ -139,7 +157,7 @@ export const styles = StyleSheet.create({
     },
     header: {
         paddingBottom: 30,
-        fontFamily: getFont(),
+        fontFamily: font(),
         textAlign: 'center',
         fontSize: 24,
         color: '#441d1d',
