@@ -14,15 +14,15 @@ export class GameBoard extends Component {
                     value={this.props.value}/>
                 <Text style={styles.toggleText}>Eén kaart tegelijk</Text>
             </View>
-            <Divider/>
+            <View style={styles.divider}></View>
             <Card showBack={this.props.showBackKop} onPress={this.props.onPressKop} frontText={"Kop"}
                   backText={this.props.backTextKop} frontStyling={styles.kopFront}
                   backStyling={styles.kopBack}/>
-            <Spacer/>
+            <View style={styles.spacing}></View>
             <Card showBack={this.props.showBackAanbod} onPress={this.props.onPressAanbod} frontText={"Aanbod"}
                   backText={this.props.backTextAanbod} frontStyling={styles.aanbodFront}
                   backStyling={styles.aanbodBack}/>
-            <Spacer/>
+            <View style={styles.spacing}></View>
             <Card showBack={this.props.showBackBeschrijving} onPress={this.props.onPressBeschrijving}
                   frontText={"Beschrijving"}
                   backText={this.props.backTextBeschrijving}
@@ -45,15 +45,3 @@ GameBoard.propTypes = {
     onPressBeschrijving: PropTypes.func,
     backTextBeschrijving: PropTypes.any
 };
-
-class Divider extends Component {
-    render() {
-        return (<View style={styles.divider}></View>);
-    }
-}
-
-class Spacer extends Component {
-    render() {
-        return (<View style={styles.spacing}></View>);
-    }
-}
