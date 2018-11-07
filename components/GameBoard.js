@@ -14,15 +14,15 @@ export class GameBoard extends Component {
                     value={this.props.value}/>
                 <Text style={styles.toggleText}>Eén kaart tegelijk</Text>
             </View>
-            <View style={styles.divider}></View>
+            <View style={styles.divider}/>
             <Card showBack={this.props.showBackKop} onPress={this.props.onPressKop} frontText={"Kop"}
                   backText={this.props.backTextKop} frontStyling={styles.kopFront}
                   backStyling={styles.kopBack}/>
-            <View style={styles.spacing}></View>
+            <View style={styles.spacing}/>
             <Card showBack={this.props.showBackAanbod} onPress={this.props.onPressAanbod} frontText={"Aanbod"}
                   backText={this.props.backTextAanbod} frontStyling={styles.aanbodFront}
                   backStyling={styles.aanbodBack}/>
-            <View style={styles.spacing}></View>
+            <View style={styles.spacing}/>
             <Card showBack={this.props.showBackBeschrijving} onPress={this.props.onPressBeschrijving}
                   frontText={"Beschrijving"}
                   backText={this.props.backTextBeschrijving}

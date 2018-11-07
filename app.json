@@ -22,7 +22,7 @@
     ],
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "nl.testbeacon.corporatebs"
+      "bundleIdentifier": "nl.testbeacon.advertentiespel"
     },
     "android": {
       "package": "nl.testbeacon.advertentiespel",
