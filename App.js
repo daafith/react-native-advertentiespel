@@ -1,6 +1,5 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {View} from 'react-native';
-import {styles} from "./styles";
 import kopppen from './assets/kop';
 import aanbod from './assets/aanbod';
 import beschrijvingen from './assets/beschrijvingen';
