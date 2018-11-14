@@ -48,10 +48,11 @@ export default class App extends React.Component {
                     }} backTextKop={this.state.kop} showBackAanbod={this.state.showAanbod} onPressAanbod={() => {
                         this.flip(1);
                         this.setAanbod();
-                    }} backTextAanbod={this.state.aanbod} showBackBeschrijving={this.state.showBeschrijving} onPressBeschrijving={() => {
-                        this.flip(2);
-                        this.setBeschrijving();
-                    }} backTextBeschrijving={this.state.beschrijving}/>}
+                    }} backTextAanbod={this.state.aanbod} showBackBeschrijving={this.state.showBeschrijving}
+                                                               onPressBeschrijving={() => {
+                                                                   this.flip(2);
+                                                                   this.setBeschrijving();
+                                                               }} backTextBeschrijving={this.state.beschrijving}/>}
                 </View>
             </View>
         );
@@ -93,7 +94,7 @@ export default class App extends React.Component {
                 showBeschrijving: true
             })
         }
-    }
+    };
 
     isKop(index) {
         return index === 0;
@@ -108,26 +109,12 @@ export default class App extends React.Component {
     }
 
     flipOne = (index) => {
-        if (this.isKop(index)) {
-            this.setState({
-                showKop: true,
-                showAanbod: false,
-                showBeschrijving: false,
-            })
-        } else if (this.isAanbod(index)) {
-            this.setState({
-                showAanbod: true,
-                showKop: false,
-                showBeschrijving: false,
-            })
-        } else {
-            this.setState({
-                showBeschrijving: true,
-                showKop: false,
-                showAanbod: false,
-            })
-        }
-    }
+        this.setState({
+            showKop: this.isKop(index),
+            showAanbod: this.isAanbod(index),
+            showBeschrijving: this.isBeschrijving(index),
+        })
+    };
 
     setKop = () => {
         this.setState({
