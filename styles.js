@@ -1,7 +1,7 @@
-import {StyleSheet, Dimensions, Platform, StatusBar} from "react-native";
+import {StyleSheet, Dimensions, Platform} from "react-native";
 
 function font() {
-    return Platform.OS === 'ios' ? 'American Typewriter' : 'Roboto';
+    return Platform.OS === 'ios' ? 'System' : 'Roboto';
 }
 
 function boardWidth() {
@@ -9,7 +9,7 @@ function boardWidth() {
 }
 
 function screentTop() {
-    return StatusBar.currentHeight + 5;
+    return 40;
 }
 
 export const styles = StyleSheet.create({
@@ -22,12 +22,13 @@ export const styles = StyleSheet.create({
         fontFamily: font(),
         textAlign: 'center',
         color: '#000',
-        fontWeight: '300',
+        fontWeight: '500',
         fontSize: 18,
         width: 24,
         height: 24,
         borderRadius: 24/2,
-        backgroundColor: 'rgba(68, 29, 29, 0.25)',
+        borderColor: '#c58884',
+        borderWidth: 1,
     },
     overlay: {
         backgroundColor: '#f5f5f5',
@@ -50,11 +51,12 @@ export const styles = StyleSheet.create({
         paddingRight: 5,
         textAlign: 'center',
         fontFamily: font(),
-        borderColor: 'rgba(78, 184, 11, 0.75)',
+        borderWidth: 2,
+        borderColor: '#45890b',
         fontSize: 18,
         fontWeight: '400',
         color:'#000',
-        backgroundColor: 'rgba(78, 184, 11, 0.75)',
+        backgroundColor: '#45890b',
         ...Platform.select({
             android: {
                 borderRadius: 50,
@@ -162,7 +164,7 @@ export const styles = StyleSheet.create({
         fontSize: 24,
         color: '#441d1d',
         fontWeight: '300',
-        opacity: 0.25,
+        opacity: 0.30,
         transform: [
             { perspective: 300 },
             { rotateY: '30deg'},

@@ -18,7 +18,7 @@ export class Explanation extends Component {
                         Deze app geeft (per speler) de mogelijkheid één of meerdere kaarten tegelijk te trekken.
                         Wil je een andere tekst? Druk dan opnieuw op de betreffende kaart.{"\n"}
                     </Text>
-                <TouchableOpacity underlayColor={"transparent"} onPress={this.props.onPress}>
+                <TouchableOpacity onPress={this.props.onPress}>
                     <Text style={styles.backToGame}>Terug</Text>
                 </TouchableOpacity>
             </View>

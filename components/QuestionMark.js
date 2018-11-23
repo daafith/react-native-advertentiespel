@@ -5,8 +5,8 @@ import * as PropTypes from "prop-types";
 
 export class QuestionMark extends Component {
     render() {
-        return <View style={styles.questionView}>
-            <TouchableOpacity underlayColor={"transparent"} onPress={this.props.onPress}>
+        return <View>
+            <TouchableOpacity style={styles.questionView} underlayColor={"transparent"} onPress={this.props.onPress}>
                 <Text style={styles.questionText}>?</Text>
             </TouchableOpacity>
         </View>;
