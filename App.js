@@ -41,7 +41,7 @@ export default class App extends React.Component {
                     {this.state.showExplanation && <Explanation onPress={() => this.showExplanation()}/>
                     }
                     {!this.state.showExplanation && <GameBoard onValueChange={this.allowAll}
-                                                               value={this.state.displayOneAtATime}
+                                                               enabled={this.state.displayOneAtATime}
                                                                showBackKop={this.state.showKop} onPressKop={() => {
                         this.flip(0);
                         this.setKop();
