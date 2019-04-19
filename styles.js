@@ -8,13 +8,13 @@ function boardWidth() {
     return Dimensions.get('window').width - 10;
 }
 
-function screentTop() {
+function screenTop() {
     return 40;
 }
 
 export const styles = StyleSheet.create({
     questionView: {
-        paddingTop: screentTop(),
+        paddingTop: screenTop(),
         paddingRight: 10,
         alignItems: 'flex-end',
     },
@@ -27,12 +27,12 @@ export const styles = StyleSheet.create({
         width: 24,
         height: 24,
         borderRadius: 24/2,
-        borderColor: '#c58884',
+        borderColor: '#9cc0e6',
         borderWidth: 1,
     },
     overlay: {
         backgroundColor: '#f5f5f5',
-        paddingTop: screentTop(),
+        paddingTop: screenTop(),
         width: Dimensions.get('window').width,
     },
     overlayText: {
@@ -52,11 +52,11 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
         fontFamily: font(),
         borderWidth: 2,
-        borderColor: '#45890b',
+        borderColor: '#9cc0e6',
         fontSize: 18,
         fontWeight: '400',
         color:'#000',
-        backgroundColor: '#45890b',
+        backgroundColor: '#9cc0e6',
         ...Platform.select({
             android: {
                 borderRadius: 50,

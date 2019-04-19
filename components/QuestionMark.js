@@ -7,7 +7,7 @@ export class QuestionMark extends Component {
     render() {
         return <View>
             <TouchableOpacity style={styles.questionView} underlayColor={"transparent"} onPress={this.props.onPress}>
-                <Text style={styles.questionText}>?</Text>
+                <Text style={styles.questionText}>i</Text>
             </TouchableOpacity>
         </View>;
     }

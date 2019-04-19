@@ -15,7 +15,7 @@ export class Explanation extends Component {
                         Eerst een kopkaart, dan het aanbod en tenslotte een beschrijving.
                         Het doel van het spel is gezelligheid en plezier.{"\n"}{"\n"}
                         <Text style={{fontWeight: "bold"}}>Opties</Text>{"\n"}
-                        Deze app geeft (per speler) de mogelijkheid één of meerdere kaarten tegelijk te trekken.
+                        Deze app geeft (per speler) de mogelijkheid één of meerdere kaarten tegelijk per beurt te trekken.
                         Wil je een andere tekst? Druk dan opnieuw op de betreffende kaart.{"\n"}
                     </Text>
                 <TouchableOpacity underlayColor={"transparent"} onPress={this.props.onPress}>

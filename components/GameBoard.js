@@ -12,7 +12,12 @@ export class GameBoard extends Component {
                 <Switch
                     onValueChange={this.props.onValueChange}
                     value={this.props.value}/>
-                <Text style={styles.toggleText}>Eén kaart tegelijk</Text>
+                {this.props.value &&
+                <Text style={styles.toggleText}>Eén kaart per beurt {this.props.value }</Text>
+                }
+                {!this.props.value &&
+                <Text style={styles.toggleText}>Meerdere kaarten per beurt</Text>
+                }
             </View>
             <View style={styles.divider}/>
             <Card showBack={this.props.showBackKop} onPress={this.props.onPressKop} frontText={"Kop"}
