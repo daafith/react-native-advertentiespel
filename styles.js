@@ -8,31 +8,9 @@ function boardWidth() {
     return Dimensions.get('window').width - 10;
 }
 
-function screenTop() {
-    return 40;
-}
-
 export const styles = StyleSheet.create({
-    questionView: {
-        paddingTop: screenTop(),
-        paddingRight: 10,
-        alignItems: 'flex-end',
-    },
-    questionText: {
-        fontFamily: font(),
-        textAlign: 'center',
-        color: '#000',
-        fontWeight: '500',
-        fontSize: 18,
-        width: 24,
-        height: 24,
-        borderRadius: 24/2,
-        borderColor: '#9cc0e6',
-        borderWidth: 1,
-    },
     overlay: {
-        backgroundColor: '#f5f5f5',
-        paddingTop: screenTop(),
+        backgroundColor: '#fff',
         width: Dimensions.get('window').width,
     },
     overlayText: {
@@ -41,31 +19,6 @@ export const styles = StyleSheet.create({
         fontWeight: '300',
         fontSize: 18,
         padding: 5,
-    },
-    backToGame: {
-        height: 48,
-        width: 88,
-        lineHeight: 44,
-        margin: 5,
-        paddingLeft: 5,
-        paddingRight: 5,
-        textAlign: 'center',
-        fontFamily: font(),
-        borderWidth: 2,
-        borderColor: '#9cc0e6',
-        fontSize: 18,
-        fontWeight: '400',
-        color:'#000',
-        backgroundColor: '#9cc0e6',
-        ...Platform.select({
-            android: {
-                borderRadius: 50,
-            },
-            ios: {
-                borderRadius: 25,
-                overflow: 'hidden',
-            },
-        }),
     },
     container: {
         backgroundColor: '#fff',
@@ -141,6 +94,7 @@ export const styles = StyleSheet.create({
         fontWeight: '300',
     },
     toggleView: {
+        paddingTop: 30,
         flexDirection: 'row',
         alignItems: 'center',
     },
@@ -157,18 +111,9 @@ export const styles = StyleSheet.create({
         paddingTop: 5,
         paddingBottom: 5,
     },
-    header: {
-        paddingBottom: 30,
-        fontFamily: font(),
-        textAlign: 'center',
-        fontSize: 24,
-        color: '#441d1d',
-        fontWeight: '300',
-        opacity: 0.30,
-        transform: [
-            { perspective: 300 },
-            { rotateY: '30deg'},
-            { skewY: '-10deg'},
-        ]
-    }
+    navigationHeader: {
+        backgroundColor: '#9cc0e6',
+        color: '#000',
+    },
+    hamburger: { width: 25, height: 25, marginLeft: 5 }
 });

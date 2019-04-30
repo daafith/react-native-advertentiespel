@@ -1,141 +1,83 @@
-import React from 'react';
-import {View} from 'react-native';
-import kopppen from './assets/kop';
-import aanbod from './assets/aanbod';
-import beschrijvingen from './assets/beschrijvingen';
-import {Explanation} from "./components/Explanation";
-import {QuestionMark} from "./components/QuestionMark";
-import {GameBoard} from "./components/GameBoard";
+import React, { Component } from 'react';
+import { View, Image, TouchableOpacity } from 'react-native';
 
-export default class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            showKop: false,
-            showAanbod: false,
-            showBeschrijving: false,
-            lastFlipped: -1,
-            displayOneAtATime: true,
-            kop: this.randomElement(kopppen.kop),
-            aanbod: this.randomElement(aanbod.aanbod),
-            beschrijving: this.randomElement(beschrijvingen.beschrijving),
-            showExplanation: false,
-        };
-    }
+import {
+    createDrawerNavigator,
+    createStackNavigator,
+    createAppContainer,
+} from 'react-navigation';
 
-    componentDidUpdate(oldProps, oldState) {
-        if (this.isKop(this.state.lastFlipped) && oldState.kop === this.state.kop) {
-            this.setKop();
-        } else if (this.isAanbod(this.state.lastFlipped) && oldState.aanbod === this.state.aanbod) {
-            this.setAanbod();
-        } else if (this.isBeschrijving(this.state.lastFlipped) && oldState.beschrijving === this.state.beschrijving) {
-            this.setBeschrijving();
-        }
-    }
+import Game from './components/Game';
+import Explanation from './components/Explanation';
+import {styles} from "./styles";
 
+class NavigationDrawerStructure extends Component {
+    toggleDrawer = () => {
+        this.props.navigationProps.toggleDrawer();
+    };
     render() {
         return (
-            <View>
-                {!this.state.showExplanation && <QuestionMark onPress={() => this.showExplanation()}/>}
-                <View>
-                    {this.state.showExplanation && <Explanation onPress={() => this.showExplanation()}/>
-                    }
-                    {!this.state.showExplanation && <GameBoard onValueChange={this.allowAll}
-                                                               enabled={this.state.displayOneAtATime}
-                                                               showBackKop={this.state.showKop} onPressKop={() => {
-                        this.flip(0);
-                        this.setKop();
-                    }} backTextKop={this.state.kop} showBackAanbod={this.state.showAanbod} onPressAanbod={() => {
-                        this.flip(1);
-                        this.setAanbod();
-                    }} backTextAanbod={this.state.aanbod} showBackBeschrijving={this.state.showBeschrijving}
-                                                               onPressBeschrijving={() => {
-                                                                   this.flip(2);
-                                                                   this.setBeschrijving();
-                                                               }} backTextBeschrijving={this.state.beschrijving}/>}
-                </View>
+            <View style={{ flexDirection: 'row' }}>
+                <TouchableOpacity onPress={this.toggleDrawer.bind(this)}>
+                    <Image
+                        source={require('./assets/drawer.png')}
+                        style={styles.hamburger}
+                    />
+                </TouchableOpacity>
             </View>
         );
     }
-
-    showExplanation = () => {
-        this.setState({
-            showExplanation: !this.state.showExplanation
-        })
-    }
-
-    allowAll = (value) => {
-        this.setState({
-            displayOneAtATime: value,
-            showKop: false,
-            showAanbod: false,
-            showBeschrijving: false,
-        })
-    };
-
-    flip = (index) => {
-        this.state.displayOneAtATime ? this.flipOne(index) : this.flipAny(index);
-        this.setState({
-            lastFlipped: index
-        })
-    };
-
-    flipAny = (index) => {
-        if (this.isKop(index)) {
-            this.setState({
-                showKop: true
-            })
-        } else if (this.isAanbod(index)) {
-            this.setState({
-                showAanbod: true
-            })
-        } else {
-            this.setState({
-                showBeschrijving: true
-            })
-        }
-    };
-
-    isKop(index) {
-        return index === 0;
-    }
-
-    isAanbod(index) {
-        return index === 1;
-    }
-
-    isBeschrijving(index) {
-        return index === 2;
-    }
-
-    flipOne = (index) => {
-        this.setState({
-            showKop: this.isKop(index),
-            showAanbod: this.isAanbod(index),
-            showBeschrijving: this.isBeschrijving(index),
-        })
-    };
-
-    setKop = () => {
-        this.setState({
-            kop: this.randomElement(kopppen.kop)
-        })
-    };
-
-    setAanbod = () => {
-        this.setState({
-            aanbod: this.randomElement(aanbod.aanbod),
-        })
-    };
-
-    setBeschrijving = () => {
-        this.setState({
-            beschrijving: this.randomElement(beschrijvingen.beschrijving),
-        })
-    };
-
-    randomElement(arr) {
-        const x = Math.floor((Math.random() * arr.length));
-        return arr[x];
-    }
 }
+
+const MainScreen = createStackNavigator({
+    First: {
+        screen: Game,
+        navigationOptions: ({ navigation }) => ({
+            title: 'Het advertentiespel',
+            headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+            headerStyle: {
+                backgroundColor: styles.navigationHeader.backgroundColor,
+            },
+            headerTintColor: styles.navigationHeader.color,
+            headerTitleStyle: {
+                fontFamily: styles.overlayText.fontFamily
+            }
+        }),
+    },
+});
+
+const ExplanationScreen = createStackNavigator({
+    Second: {
+        screen: Explanation,
+        navigationOptions: ({ navigation }) => ({
+            title: 'Uitleg',
+            headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+            headerStyle: {
+                backgroundColor: styles.navigationHeader.backgroundColor,
+            },
+            headerTintColor: styles.navigationHeader.color,
+            headerTitleStyle: {
+                fontFamily: styles.overlayText.fontFamily
+            }
+        }),
+
+    },
+});
+
+const DrawerNavigatorExample = createDrawerNavigator({
+    Screen1: {
+        screen: MainScreen,
+        navigationOptions: {
+            drawerLabel: 'Spelen',
+        },
+    },
+
+    Screen2: {
+        screen: ExplanationScreen,
+        navigationOptions: {
+            drawerLabel: 'Uitleg',
+        },
+    },
+});
+
+export default createAppContainer(DrawerNavigatorExample);

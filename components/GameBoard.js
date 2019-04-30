@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Text, View} from "react-native";
+import {View} from "react-native";
 import {styles} from "../styles";
 import {Card} from "./Card";
 import * as PropTypes from "prop-types";
@@ -8,7 +8,6 @@ import {Toggle} from "./Toggle";
 export class GameBoard extends Component {
     render() {
         return <View style={styles.container}>
-            <Text style={styles.header}>Advertentiespel</Text>
             <Toggle onValueChange={this.props.onValueChange} enabled={this.props.enabled}/>
             <View style={styles.divider}/>
             <Card showBack={this.props.showBackKop} onPress={this.props.onPressKop} frontText={"Kop"}
