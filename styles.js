@@ -104,16 +104,23 @@ export const styles = StyleSheet.create({
         fontFamily: font(),
     },
     divider: {
-        paddingTop: 25,
-        paddingBottom: 25,
+        paddingTop: 20,
+        paddingBottom: 20,
     },
     spacing: {
         paddingTop: 5,
         paddingBottom: 5,
     },
-    navigationHeader: {
+    navigation: {
         backgroundColor: '#9cc0e6',
         color: '#000',
+        fontFamily: font(),
+        borderColor:'#bb4455',
     },
-    hamburger: { width: 25, height: 25, marginLeft: 5 }
+    hamburger: {
+        width: 25,
+        height: 25,
+        marginLeft: 10,
+        marginRight: 10,
+}
 });

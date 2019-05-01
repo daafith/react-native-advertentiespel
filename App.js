@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { View, Image, TouchableOpacity } from 'react-native';
+import React, {Component} from 'react';
+import {View, Image, TouchableOpacity} from 'react-native';
 
 import {
     createDrawerNavigator,
@@ -15,9 +15,10 @@ class NavigationDrawerStructure extends Component {
     toggleDrawer = () => {
         this.props.navigationProps.toggleDrawer();
     };
+
     render() {
         return (
-            <View style={{ flexDirection: 'row' }}>
+            <View style={{flexDirection: 'row'}}>
                 <TouchableOpacity onPress={this.toggleDrawer.bind(this)}>
                     <Image
                         source={require('./assets/drawer.png')}
@@ -32,15 +33,15 @@ class NavigationDrawerStructure extends Component {
 const MainScreen = createStackNavigator({
     First: {
         screen: Game,
-        navigationOptions: ({ navigation }) => ({
+        navigationOptions: ({navigation}) => ({
             title: 'Het advertentiespel',
-            headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+            headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
             headerStyle: {
-                backgroundColor: styles.navigationHeader.backgroundColor,
+                backgroundColor: styles.navigation.backgroundColor,
             },
-            headerTintColor: styles.navigationHeader.color,
+            headerTintColor: styles.navigation.color,
             headerTitleStyle: {
-                fontFamily: styles.overlayText.fontFamily
+                fontFamily: styles.navigation.fontFamily
             }
         }),
     },
@@ -49,15 +50,15 @@ const MainScreen = createStackNavigator({
 const ExplanationScreen = createStackNavigator({
     Second: {
         screen: Explanation,
-        navigationOptions: ({ navigation }) => ({
+        navigationOptions: ({navigation}) => ({
             title: 'Uitleg',
-            headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+            headerLeft: <NavigationDrawerStructure navigationProps={navigation}/>,
             headerStyle: {
-                backgroundColor: styles.navigationHeader.backgroundColor,
+                backgroundColor: styles.navigation.backgroundColor,
             },
-            headerTintColor: styles.navigationHeader.color,
+            headerTintColor: styles.navigation.color,
             headerTitleStyle: {
-                fontFamily: styles.overlayText.fontFamily
+                fontFamily: styles.navigation.fontFamily
             }
         }),
 
@@ -65,19 +66,27 @@ const ExplanationScreen = createStackNavigator({
 });
 
 const DrawerNavigatorExample = createDrawerNavigator({
-    Screen1: {
-        screen: MainScreen,
-        navigationOptions: {
-            drawerLabel: 'Spelen',
+        Spelen: {
+            screen: MainScreen,
+            navigationOptions: {
+                drawerLabel: 'Spelen',
+            },
         },
-    },
 
-    Screen2: {
-        screen: ExplanationScreen,
-        navigationOptions: {
-            drawerLabel: 'Uitleg',
-        },
+        Uitleg: {
+            screen: ExplanationScreen,
+            navigationOptions: {
+                drawerLabel: 'Uitleg',
+            },
+        }
     },
-});
+    {
+        contentOptions: {
+            activeTintColor: styles.navigation.borderColor,
+            labelStyle: {
+                fontFamily: styles.navigation.fontFamily,
+            },
+        },
+    });
 
 export default createAppContainer(DrawerNavigatorExample);
