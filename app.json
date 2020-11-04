@@ -4,7 +4,6 @@
     "description": "Het klassieke advertentiespel zoals uitgebracht in de jaren 50.",
     "slug": "Advertentiespel",
     "privacy": "public",
-    "sdkVersion": "34.0.0",
     "platforms": [
       "ios",
       "android"

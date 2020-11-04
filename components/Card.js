@@ -41,7 +41,8 @@ class FadeIntoView extends React.Component {
             this.state.fadeAnim,
             {
                 toValue: 1,
-                duration: 800,
+                duration: 600,
+                useNativeDriver: true,
             }).start();
     }
 
