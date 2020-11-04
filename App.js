@@ -65,7 +65,7 @@ const ExplanationScreen = createStackNavigator({
     },
 });
 
-const DrawerNavigatorExample = createDrawerNavigator({
+const DrawerNavigator = createDrawerNavigator({
         Spelen: {
             screen: MainScreen,
             navigationOptions: {
@@ -89,4 +89,4 @@ const DrawerNavigatorExample = createDrawerNavigator({
         },
     });
 
-export default createAppContainer(DrawerNavigatorExample);
+export default createAppContainer(DrawerNavigator);
